@@ -6,6 +6,7 @@ let y = 100;
 let video;
 let canvas;
 let image;
+let imgSize;
 
 function preload(){
   friend = loadImage('friends.png')
@@ -14,6 +15,8 @@ function preload(){
 function setup() {
   canvas = createCanvas(windowWidth,windowHeight);
   canvas.id('canvas');
+ if(width>height) {imgSize=height}
+ else{imgSize=width};
 
   // Creat the video: ビデオオブジェクトを作る
   video = createCapture(VIDEO);
@@ -22,7 +25,7 @@ function setup() {
   video.id('video');
 
   image = createImg('friends.png','헤위');
-  image.size(height,height);
+  image.size(imgSize,imgSize);
   image.id('image');
  
 
