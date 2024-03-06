@@ -18,11 +18,11 @@ function setup() {
   // Creat the video: ビデオオブジェクトを作る
   video = createCapture(VIDEO);
   //Change the video input's aspect ratio according to canvas: キャンバスに合わせてビデオインプットの画面比を帰る．
-  video.size(width, height);
+  video.size(width*2, height*2);
   video.id('video');
 
   image = createImg('friends.png','헤위');
-  image.size(width,height);
+  image.size(width*2,height*2);
   image.id('image');
  
 
