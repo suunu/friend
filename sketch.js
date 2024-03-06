@@ -8,7 +8,7 @@ let canvas;
 let image;
 
 function preload(){
-  friend = loadImage('friend/friends.png')
+  friend = loadImage('friends.png')
 };
 
 function setup() {
@@ -21,7 +21,7 @@ function setup() {
   video.size(width, height);
   video.id('video');
 
-  image = createImg('friend/friends.png','헤위');
+  image = createImg('friends.png','헤위');
   image.position(300,100);
   image.id('image');
   //Image(friend,0,0);
