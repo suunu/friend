@@ -12,7 +12,7 @@ function preload(){
 };
 
 function setup() {
-  canvas = createCanvas(windowWidth-10,windowHeight-10);
+  canvas = createCanvas(windowWidth,windowHeight);
   canvas.id('canvas');
 
   // Creat the video: ビデオオブジェクトを作る
@@ -22,9 +22,9 @@ function setup() {
   video.id('video');
 
   image = createImg('friends.png','헤위');
-  image.position(300,100);
+  image.size(width,height);
   image.id('image');
-  //Image(friend,0,0);
+ 
 
   const faceOptions = {
     withLandmarks: true,
