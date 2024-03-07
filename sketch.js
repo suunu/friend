@@ -4,6 +4,7 @@ let friend;
 let x = 100;
 let y = 100;
 let video;
+let video2;
 let canvas;
 let image;
 let imgSize;
@@ -13,16 +14,22 @@ function preload(){
 };
 
 function setup() {
-  canvas = createCanvas(windowWidth,windowHeight);
+  if(windowWidth>windowHeight) {imgSize=windowHeight}
+  else{imgSize=windowWidth};
+  canvas = createCanvas(imgSize,imgSize);
   canvas.id('canvas');
  if(width>height) {imgSize=height}
  else{imgSize=width};
 
   // Creat the video: ビデオオブジェクトを作る
-  video = createCapture(VIDEO);
+  video2 = createCapture (VIDEO,{ flipped:true});
   //Change the video input's aspect ratio according to canvas: キャンバスに合わせてビデオインプットの画面比を帰る．
-  video.size(width, height);
-  video.id('video');
+  video2.size(imgSize,imgSize);
+  video2.id('video');
+  
+
+
+  
 
   image = createImg('friends.png','헤위');
   image.size(imgSize,imgSize);
@@ -38,7 +45,7 @@ function setup() {
 
 
   //Initialize the model: モデルの初期化
-  faceapi = ml5.faceApi(video, faceOptions, faceReady);
+  faceapi = ml5.faceApi(video2, faceOptions, faceReady);
 }
 
 function faceReady() {
@@ -91,18 +98,19 @@ function drawLandmarks(detections){
 function drawExpressions(detections, x, y, textYSpace){
   if(detections.length > 0){//If at least 1 face is detected: もし1つ以上の顔が検知されていたら
     let {neutral, happy, angry, sad, disgusted, surprised, fearful} = detections[0].expressions;
+    let size = imgSize/20
     textFont('Helvetica Neue');
-    textSize(14);
-    noStroke();
+    textSize(size);
+    stroke(3);
     fill(44, 169, 225);
+   
 
-    text("neutral:       " + nf(neutral*100, 2, 2)+"%", x, y);
-    text("happiness: " + nf(happy*100, 2, 2)+"%", x, y+textYSpace);
-    text("anger:        " + nf(angry*100, 2, 2)+"%", x, y+textYSpace*2);
-    text("sad:            "+ nf(sad*100, 2, 2)+"%", x, y+textYSpace*3);
-    text("disgusted: " + nf(disgusted*100, 2, 2)+"%", x, y+textYSpace*4);
-    text("surprised:  " + nf(surprised*100, 2, 2)+"%", x, y+textYSpace*5);
-    text("fear:           " + nf(fearful*100, 2, 2)+"%", x, y+textYSpace*6);
+
+    text("친구가 되어서 기뻐요!: " + nf(happy*100, 2, 2)+"%", x, y);
+    text("친구가 되어 놀라워요!:  " + nf(surprised*100, 2, 2)+"%", x, y+size);
+    text("딱히...:       " + nf(neutral*100, 2, 2)+"%", x, y+size*2);
+    text("별로에요..: " + nf(disgusted*100, 2, 2)+"%", x, y+size*3);
+    
   }else{//If no faces is detected: 顔が1つも検知されていなかったら
     text("얼굴을 보여주세요 ", x, y);
     

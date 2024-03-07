@@ -3,14 +3,15 @@ body {
 }
 
 #canvas{
-  position: relative;
+  position:relative;
+ transform: scaleX(-1);
   top: 0px;
-  left: 0px;
   z-index:1;
 }
 
 #video{
   position: absolute;
+  transform: scaleX(-1);
   top: 0px;
   left: 0px;
   z-index:0;
@@ -20,6 +21,7 @@ body {
   position: absolute;
   top: 0px;
   left: 0px;
+
   
   
 }
