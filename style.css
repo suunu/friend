@@ -4,14 +4,13 @@ body {
 
 #canvas{
   position:relative;
- transform: scaleX(-1);
   top: 0px;
   z-index:1;
 }
 
 #video{
   position: absolute;
-  transform: scaleX(-1);
+  
   top: 0px;
   left: 0px;
   z-index:0;
